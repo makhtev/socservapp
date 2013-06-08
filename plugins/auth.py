@@ -36,7 +36,6 @@ def setUserInfo(connection):
 			connection.transport.loseConnection()
 			return
 		connection.gid = user_info[0]
-		#connection.uid = user_info[1]
 		connection.name = user_info[2]
 		connection.color = user_info[3]
 		connection.rating = user_info[4]
@@ -56,7 +55,6 @@ def getUserProfile(connection, data):
 		return
 	info = {}
 	info['gid'] = db_info[0]
-	#info.uid = db_info[1]
 	info['name'] = db_info[2]
 	info['color'] = db_info[3]
 	info['rating'] = db_info[4]

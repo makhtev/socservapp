@@ -91,15 +91,6 @@ def messageHnd(connection, data=None):
 		t = threading.Thread(target=TYPES[data['type']](connection, data,))
 		t.start()
 
-
-def lostClient(con):
-	pass
-	#user = find_by_con(con)
-	#for i in user.rooms:
-	#	i.leave(con)
-	#for i in AUTHED:
-	#	if con in i.values():
-	#		AUTHED.remove(i)
 class server(basic.LineReceiver):
 	load_plugins()
 	def connectionMade(self):
@@ -108,18 +99,14 @@ class server(basic.LineReceiver):
 		self.time = int(time.time())
 		print "Got new client!"
 		CLIENTS.append(self)
-		#CLIENTS.append(self)
-		#self.message(PREFIX)
 	def close(self):
 		print "CLOSE!"
 		self.transport.loseConnection()
 	def connectionLost(self, reason):
 		print "Lost a client!"
-		#lostClient(self)
 		CLIENTS.remove(self)
 		for i in LOST_FUNCTIONS:
 			i(self)
-		#groupMessage("left",{"id":"!"},AUTHED)
 	def dataReceived(self, line):
 		print "received", repr(line)
 		if line.startswith('<policy-file-request/>'):
