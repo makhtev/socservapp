@@ -64,12 +64,12 @@ def getUserProfile(connection, data):
 def regUser(connection,data):
 	if not connection.authed:
 		return
-	sql = "INSERT INTO `avatars`.`users` (`uid`, `name`, `status`) VALUES (%s,'%s','%s');"%(connection.uid,data['name'],data['status'])
+	sql = "INSERT INTO `users` (`uid`, `name`, `status`) VALUES (%s,'%s','%s');"%(connection.uid,data['name'],data['status'])
 	if database.exec_data(sql):
 		setUserInfo(connection)
 		connection.message({"type":"regUser","state":"success","usr_info":connection.getInfo()})
 def setUserProfile(connection,data):
-	print database.exec_data("UPDATE  `avatars`.`users` SET  `name` =  '%s', `status` = '%s' WHERE  `users`.`uid` =%s;"%(data['name'], data['status'], connection.uid))
+	print database.exec_data("UPDATE  `users` SET  `name` =  '%s', `status` = '%s' WHERE  `users`.`uid` =%s;"%(data['name'], data['status'], connection.uid))
 
 #SEND data TO ALL AUTHED USERS
 def snd_all(data):
