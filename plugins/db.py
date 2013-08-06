@@ -14,8 +14,8 @@ class mysql_db:
 	def exec_data(self, sql):
 		self.connect()
 		response = self.cursor.execute(sql)
-		self.disconenct()
-		return resposne
+		self.disconnect()
+		return response
 	def connect(self):
 		self.db = MySQLdb.connect(host=DB_HOST, user=DB_USER, passwd=DB_PASS, db=DB_NAME, charset='utf8')
 		self.cursor = self.db.cursor()

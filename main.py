@@ -91,6 +91,7 @@ def messageHnd(connection, data=None):
 		t = threading.Thread(target=TYPES[data['type']](connection, data,))
 		t.start()
 
+
 class server(basic.LineReceiver):
 	load_plugins()
 	def connectionMade(self):
